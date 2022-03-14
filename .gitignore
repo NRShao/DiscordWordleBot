@@ -6,3 +6,4 @@ startup.sh
 kill.sh
 log.txt
 pid.txt
+venv/

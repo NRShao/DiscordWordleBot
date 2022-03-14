@@ -4,3 +4,4 @@ python-dotenv
 pymongo
 dnspython
 requests
+black @ git+https://github.com/psf/black@71e71e5f52e5f6bdeae63cc8c11b1bee44d11c30
