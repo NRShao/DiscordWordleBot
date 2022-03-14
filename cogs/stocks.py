@@ -1,5 +1,5 @@
 from discord.ext import commands
-import requests
+import requests, os
 
 
 class StocksCog(commands.Cog):
@@ -13,7 +13,7 @@ class StocksCog(commands.Cog):
 
         querystring = {"symbols": "FB"}
 
-        headers = {"x-api-key": "Qkdfm9Y7nM8nxfbBay7JFae3qU7Kwjn95BrCoQ2x"}
+        headers = {"x-api-key": os.getenv('STOCKS')}
 
         response = requests.request("GET", url, headers=headers, params=querystring)
         json = response.json()

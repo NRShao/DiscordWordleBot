@@ -4,7 +4,6 @@ import discord
 from pytz import timezone
 from mongo import *
 import utils
-import operator
 
 
 class AnswersCog(commands.Cog):
@@ -86,14 +85,6 @@ class AnswersCog(commands.Cog):
             "Apparently this sends notifs w the answer to people so uh, don't use this. Just paste ur copy pasta."
         )
         return
-        # answer = self.get_answer(utils.now().date())
-        # if word == answer[0]:
-        #   await ctx.send("Thats it! Copy paste your Wordle guess thing!")
-        #   insert_wordle_record(ctx, answer)
-        #   await ctx.message.delete()
-        # else:
-        #   await ctx.send("You stupid.")
-        #   await ctx.message.delete()
 
     @commands.command("record")
     @commands.is_owner()
@@ -115,10 +106,6 @@ class AnswersCog(commands.Cog):
             await ctx.send("Record exists for this day.")
             return
         await ctx.send("Recorded!")
-        # if ctx.channel.name != "wordle":
-        #   return
-        # guesses = args[2][0]
-        # await ctx.send(f"It took you {guesses} guesses!")
 
     @commands.Cog.listener()
     async def on_message(self, message):
