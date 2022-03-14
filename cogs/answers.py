@@ -72,7 +72,7 @@ class AnswersCog(commands.Cog):
             average = e[1][1]
             user_names.append(f"{i} - {user.name}")
             counts.append(f"{count}")
-            averages.append(f"{round(average,1)}")
+            averages.append(f"{round(average,2)}")
             i += 1
         embed.add_field(name="User", value="\n".join(user_names), inline=True)
         embed.add_field(name="Guess Avg", value="\n".join(averages), inline=True)
