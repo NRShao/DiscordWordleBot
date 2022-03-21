@@ -8,15 +8,29 @@ class StocksCog(commands.Cog):
 
     @commands.command("fb")
     @commands.has_any_role("The Principal", "Bad Kid", "Admin", "DJ")
-    async def insult(self, ctx):
+    async def fb(self, ctx):
+        await self.stock(ctx, "fb")
+
+    @commands.command("stock")
+    @commands.has_any_role("The Principal", "Bad Kid", "Admin", "DJ")
+    async def stock(self, ctx, ticker):
         url = "https://yfapi.net/v6/finance/quote"
 
-        querystring = {"symbols": "FB"}
+        querystring = {"symbols": ticker}
 
-        headers = {"x-api-key": os.getenv('STOCKS')}
+        headers = {"x-api-key": os.getenv("STOCKS")}
 
         response = requests.request("GET", url, headers=headers, params=querystring)
+        if response.status_code == 403:
+            await ctx.send(
+                "This api likes to change its API keys. Likely broken. Ping fishy."
+            )
+            return
         json = response.json()
+        if json["quoteResponse"]["result"] == []:
+            await ctx.send("Invalid request, check your ticker")
+            return
+        name = json["quoteResponse"]["result"][0]["displayName"]
         price = json["quoteResponse"]["result"][0]["regularMarketPrice"]
         day_percent_change = json["quoteResponse"]["result"][0][
             "regularMarketChangePercent"
@@ -27,7 +41,7 @@ class StocksCog(commands.Cog):
         #   day_price_change = abs(day_percent_change)
         #   sign = '-'
         await ctx.send(
-            f"Today, Facebook stock is at **{price}** per share. It changed by **{round(day_percent_change, 2)}%** and **{round(day_price_change, 2)}** USD."
+            f"Today, {name} ({ticker.upper()}) stock is at **{price}** per share. It changed by **{round(day_percent_change, 2)}%** and **{round(day_price_change, 2)}** USD."
         )
 
 
