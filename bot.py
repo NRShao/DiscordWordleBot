@@ -57,9 +57,7 @@ async def help(ctx):
     )
     embed.add_field(name="!stats", value="See your own answering stats.", inline=False)
     embed.add_field(name="!leaderboard", value="Check everyones rankings", inline=False)
-    embed.add_field(
-        name="!insult <tag user>", value="Insult someone", inline=False
-    )
+    embed.add_field(name="!insult <tag user>", value="Insult someone", inline=False)
     embed.add_field(name="!fb", value="Laugh at FB", inline=False)
     embed.add_field(name="!stock <ticker>", value="Check a stock price", inline=False)
     embed.add_field(name="!record", value="ME only", inline=False)

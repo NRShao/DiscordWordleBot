@@ -25,8 +25,10 @@ class InsultCog(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message):
         if message.channel.name == "moobies":
-            if random.randint(0,100) > 90:
-                await message.channel.send("Yeah you would talking in this fucking channel. Cringelord.")
+            if random.randint(0, 100) > 90:
+                await message.channel.send(
+                    "Yeah you would talking in this fucking channel. Cringelord."
+                )
                 return
 
 
