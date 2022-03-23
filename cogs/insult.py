@@ -22,6 +22,13 @@ class InsultCog(commands.Cog):
         insult = random.choice(self.insults)
         await ctx.send(user.mention + " " + insult)
 
+    @commands.Cog.listener()
+    async def on_message(self, message):
+        if message.channel.name == "moobies":
+            if random.randint(0,100) > 90:
+                await message.channel.send("Yeah you would talking in this fucking channel. Cringelord.")
+                return
+
 
 def setup(bot):
     bot.add_cog(InsultCog(bot))
